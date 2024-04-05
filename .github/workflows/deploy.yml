@@ -21,7 +21,7 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.AUTO_VERCEL_DEPLOY_TOKEN }}
         with:
           source-directory: 'output'
-          destination-github-username: Nohv
+          destination-github-username: Geun-Oh
           destination-repository-name: daybook
           user-email: ${{ secrets.OFFICIAL_ACCOUNT_EMAIL }}
           commit-message: ${{ github.event.commits[0].message }}
