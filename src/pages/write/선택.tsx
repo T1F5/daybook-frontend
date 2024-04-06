@@ -33,6 +33,7 @@ const 선택 = () => {
           align-items: center;
           flex-direction: column;
           gap: 16px;
+          cursor: pointer;
         `}
         onClick={() => setPaperTypeAtom('모눈종이')}
       >
@@ -76,6 +77,7 @@ const 선택 = () => {
           align-items: center;
           flex-direction: column;
           gap: 16px;
+          cursor: pointer;
         `}
         onClick={() => setPaperTypeAtom('줄노트')}
       >

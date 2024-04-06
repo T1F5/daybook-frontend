@@ -9,6 +9,7 @@ function Layout({ children }: PropsWithChildren) {
         position: relative;
         width: 100vw;
         height: 100vh;
+        overflow-y: auto;
         border-left: 1px solid lightgray;
         border-right: 1px solid lightgray;
 
