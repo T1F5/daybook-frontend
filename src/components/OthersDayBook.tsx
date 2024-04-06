@@ -14,8 +14,8 @@ const OthersWriting = () => {
 
     const [daybookData, setDaybookData] = useState<GetDaybookResponse | null>(null);
 
-    const getData = async () => {
-        const res = await getDaybook();
+    const getData = async (id: string) => {
+        const res = await getDaybook(id);
         if (!res || !res.data) return;
 
         setDaybookData(res.data);
@@ -24,7 +24,7 @@ const OthersWriting = () => {
     useEffect(() => {
         if (!id) return;
 
-        getData();
+        getData(id);
     }, [id]);
 
     return (
@@ -35,7 +35,7 @@ const OthersWriting = () => {
             </Header>
 
             <Wrapper>
-                {daybookData && <Card isDetail />}
+                {daybookData && <Card isDetail daybookData={daybookData} />}
             </Wrapper>
 
             <OthersWritingFooter />

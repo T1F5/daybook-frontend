@@ -63,7 +63,6 @@ const Card = ({
           </div>
         </ExtraInfo>
       )}
-
       <Wrapper
         css={css`
           height: ${isDetail ? '560px' : '426px'};
@@ -118,6 +117,16 @@ const Wrapper = styled.article`
 `;
 
 const CardHeader = styled.div`
+  width: 100%;
+  height: 56px;
+  background-color: white;
+  padding-left: 16px;
+  padding-right: 16px;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid ${colors.grey30};
   width: 100%;
   height: 56px;
   background-color: white;
