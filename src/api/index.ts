@@ -21,3 +21,9 @@ export const getDaybook = async (id: string) => {
   );
   return data;
 };
+
+export const getDaybookList = async () => {
+  const { data } =
+    await client.get<Response<GetDaybookResponse[]>>('/board/boards');
+  return data;
+};
