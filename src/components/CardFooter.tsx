@@ -1,9 +1,17 @@
+import { ReactionObject } from '@api/response';
 import styled from '@emotion/styled';
 import { colors } from '@theme';
 import getFontStyle from '@theme/font/getFontSize';
+import { getReactionCount } from '@utils/getReactionCount';
 
+interface CardFooterProps {
+  reactions: ReactionObject[];
+}
 // TODO: API 연결
-const CardFooter = () => {
+const CardFooter = ({ reactions }: CardFooterProps) => {
+
+  const { ADMIRE, GREAT, MOVING } = getReactionCount(reactions);
+
   return (
     <Wrapper>
       <ReactionButton>
@@ -12,7 +20,7 @@ const CardFooter = () => {
           width={'88px'}
           alt="추앙해요~"
         />
-        <ButtonText>추앙해요 ${2}</ButtonText>
+        <ButtonText>추앙해요 {ADMIRE}</ButtonText>
       </ReactionButton>
       <ReactionButton>
         <img
@@ -20,7 +28,7 @@ const CardFooter = () => {
           width={'88px'}
           alt="추앙해요~"
         />
-        <ButtonText>대단해요 ${2}</ButtonText>
+        <ButtonText>대단해요 {GREAT}</ButtonText>
       </ReactionButton>
       <ReactionButton>
         <img
@@ -28,7 +36,7 @@ const CardFooter = () => {
           width={'88px'}
           alt="추앙해요~"
         />
-        <ButtonText>감동이에요 ${2}</ButtonText>
+        <ButtonText>감동이에요 {MOVING}</ButtonText>
       </ReactionButton>
     </Wrapper>
   );

@@ -30,7 +30,7 @@ const Card = ({
   isCurrent = true,
 }: Props) => {
   const { target, asyncDownload } = useImageDownload();
-  const { hearts, paperType, createdAt, content, hashtags, boardId } = daybook;
+  const { hearts, paperType, createdAt, content, hashtags, boardId, reactions } = daybook;
   const hashtag = hashtags[0] as HashTagType;
   const Icon = hashtagIcon[hashtag];
 
@@ -93,8 +93,8 @@ const Card = ({
         </CardHeader>
         <CardMain readOnly value={content} />
         {isHome && <Detail daybookId={boardId} />}
-        {!isHome && !isDetail && <CardFooter />}
-        {isDetail && <DetailFooter boardId={boardId} />}
+        {!isHome && !isDetail && <CardFooter reactions={reactions} />}
+        {isDetail && <DetailFooter boardId={boardId} reactions={reactions} />}
       </Wrapper>
       <Impacted impactNum={hearts} />
     </div>

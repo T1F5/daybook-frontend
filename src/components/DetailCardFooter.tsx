@@ -2,13 +2,15 @@ import styled from "@emotion/styled";
 import getFontStyle from "@theme/font/getFontSize";
 import { colors } from "@theme";
 import { postReactions } from "@api";
-import { REACTION_TYPE } from "@api/response";
+import { REACTION_TYPE, ReactionObject } from "@api/response";
+import { getReactionCount } from "@utils/getReactionCount";
 
 interface DetailCardFooterProps {
     boardId: number;
+    reactions: ReactionObject[];
 }
 
-const DetailCardFooter = ({ boardId }: DetailCardFooterProps) => {
+const DetailCardFooter = ({ boardId, reactions }: DetailCardFooterProps) => {
 
     const post = async (reactionType: keyof typeof REACTION_TYPE, id: number) => {
         const res = await postReactions(reactionType, id);
@@ -17,12 +19,14 @@ const DetailCardFooter = ({ boardId }: DetailCardFooterProps) => {
         }
     }
 
+    const { ADMIRE, GREAT, MOVING } = getReactionCount(reactions);
+
     return (
         <Wrapper>
             <div>
-                <ButtonText onClick={() => post(REACTION_TYPE.ADMIRE, boardId)}>추앙해요 {2}</ButtonText>
-                <ButtonText onClick={() => post(REACTION_TYPE.MOVING, boardId)}>감동이에요 {2}</ButtonText>
-                <ButtonText onClick={() => post(REACTION_TYPE.GREAT, boardId)}>대단해요 {2}</ButtonText>
+                <ButtonText onClick={() => post(REACTION_TYPE.ADMIRE, boardId)}>추앙해요 {ADMIRE}</ButtonText>
+                <ButtonText onClick={() => post(REACTION_TYPE.MOVING, boardId)}>감동이에요 {MOVING}</ButtonText>
+                <ButtonText onClick={() => post(REACTION_TYPE.GREAT, boardId)}>대단해요 {GREAT}</ButtonText>
             </div>
         </Wrapper>
     );

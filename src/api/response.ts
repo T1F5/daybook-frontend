@@ -29,12 +29,12 @@ export const REACTION_TYPE = {
 
 export type ReactionsResponse = {
   reactionId: number;
-  reactionType: typeof REACTION_TYPE;
+  reactionType: keyof typeof REACTION_TYPE;
   memberId: number;
   boardId: number;
 };
 
 export type ReactionObject = {
   count: number;
-  reactionType: typeof REACTION_TYPE;
+  reactionType: keyof typeof REACTION_TYPE;
 };
