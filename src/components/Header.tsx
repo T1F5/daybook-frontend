@@ -1,12 +1,12 @@
-import styled from '@emotion/styled';
-import ChevronLeftSVG from '@assets/svg/chevron_left.svg?react';
-import HomeSVG from '@assets/svg/home.svg?react';
-import IconAddSVG from '@assets/svg/ico_add.svg?react';
-import getFontStyle from '@theme/font/getFontSize';
-import { ComponentProps, PropsWithChildren, useCallback } from 'react';
-import { colors } from '@theme';
-import { Link } from 'react-router-dom';
-import useAuth from '@hooks/useAuth';
+import styled from "@emotion/styled";
+import ChevronLeftSVG from "@assets/svg/chevron_left.svg?react";
+import HomeSVG from "@assets/svg/home.svg?react";
+import IconAddSVG from "@assets/svg/ico_add.svg?react";
+import getFontStyle from "@theme/font/getFontSize";
+import { ComponentProps, PropsWithChildren, useCallback } from "react";
+import { colors } from "@theme";
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "@hooks/useAuth";
 
 interface Props {
   title?: string;
@@ -24,19 +24,26 @@ function Header({ title, children }: PropsWithChildren<Props>) {
 function Button({
   variety,
   ...attributes
-}: ComponentProps<'button'> & {
-  variety: 'back' | 'home' | 'write' | 'logout';
+}: ComponentProps<"button"> & {
+  variety: "back" | "home" | "write" | "logout";
 }) {
   const { logout } = useAuth();
 
+  const navigate = useNavigate();
+
   const renderSVG = useCallback(() => {
-    if (variety === 'back') return <ChevronLeftSVG />;
-    if (variety === 'home') return <HomeSVG />;
-    if (variety === 'logout')
+    if (variety === "back")
+      return (
+        <div onClick={() => navigate(-1)}>
+          <ChevronLeftSVG />
+        </div>
+      );
+    if (variety === "home") return <HomeSVG />;
+    if (variety === "logout")
       return <LogoutButton onClick={logout}>로그아웃</LogoutButton>;
   }, [logout, variety]);
 
-  if (variety === 'write') return <WriteCTA />;
+  if (variety === "write") return <WriteCTA />;
 
   return <TouchableButton {...attributes}>{renderSVG()}</TouchableButton>;
 }
@@ -53,7 +60,7 @@ function WriteCTA() {
 export default Object.assign(Header, { Button });
 
 const Title = styled.div`
-  ${getFontStyle('header3')}
+  ${getFontStyle("header3")}
 `;
 
 const Wrapper = styled.header`
@@ -96,12 +103,12 @@ const WriteCTAButton = styled(Link)`
 
   span {
     color: white;
-    ${getFontStyle('title4')}
+    ${getFontStyle("title4")}
   }
 `;
 
 const LogoutButton = styled.div`
   color: ${colors.primaryDark};
-  ${getFontStyle('body4')};
+  ${getFontStyle("body4")};
   cursor: pointer;
 `;
