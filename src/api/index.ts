@@ -1,6 +1,11 @@
 import { DayBook } from "@state/daybook";
 import client from "./client";
-import { GetDaybookResponse, PostDaybookResponse } from "./response";
+import {
+  GetDaybookResponse,
+  PostDaybookResponse,
+  REACTION_TYPE,
+  ReactionsResponse,
+} from "./response";
 
 interface Response<T> {
   status: number;
@@ -34,5 +39,25 @@ export const deleteDaybookById = async (id: number) => {
       boardId: number;
     }>
   >(`/board/${id}`);
+  return data;
+};
+
+export const postReactions = async (
+  reactionType: typeof REACTION_TYPE,
+  boardId: number
+) => {
+  const { data } = await client.post<Response<ReactionsResponse>>(
+    `/reactions`,
+    {
+      reactionType,
+      boardId,
+    }
+  );
+  return data;
+};
+
+export const getRandomDaybooks = async () => {
+  const { data } =
+    await client.get<Response<GetDaybookResponse[]>>("/board/random");
   return data;
 };
