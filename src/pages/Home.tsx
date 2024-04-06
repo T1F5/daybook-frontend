@@ -1,60 +1,84 @@
-import Header from "@components/Header";
 import styled from '@emotion/styled';
-import getFontStyle from "@theme/font/getFontSize";
-import { css } from '@emotion/react';
-import HomeSwiper from "@components/HomeSwiper";
+import { css } from '@emotion/react'
+import getFontStyle from '@theme/font/getFontSize';
+import Header from '@components/Header';
+import HomeSwiper from '@components/HomeSwiper';
+import HumanSVG from "@assets/svg/human.svg?react";
+import AddIconSVG from "@assets/svg/ico_add.svg?react";
+import { colors } from '@theme';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
     return (
-        <HomeWrapper>
+        <Wrapper>
             <Header>
-                <Header.Button variety="write" />
+                <img src="/src/assets/images/home_header.png" alt='home_header' width={"160px"} />
             </Header>
+            <p
+                css={css`
+                margin-top: 40px;
+            white-space: pre-wrap;
+            ${getFontStyle('header1')}
+          `}
+            >
+                {`현재 3명의` + '\n' + '일지를 볼 수 있어요'}
+            </p>
 
-            <TopSection>
-
-                <img src="/src/assets/images/image.png" alt="임시 이미지" />
-
-                <div>
-                    <span css={css`
-                        ${getFontStyle('title2')}
-                    `}>YYYY년 MM월 DD일</span>
-                    <span css={css`
-                        ${getFontStyle('header1')}
-                    `}>3개</span>
-                </div>
-            </TopSection>
             <HomeSwiper />
-        </HomeWrapper>
+
+            <Footer>
+                <Link to={'/my'}>
+                    <button>
+                        <HumanSVG />
+                        내 일지보기
+                    </button>
+                </Link>
+                <Link to={'/write'}>
+                    <button css={css`
+                    background-color: ${colors.primaryDark};
+                    color: white;
+                `}>
+                        <AddIconSVG />
+                        일지작성
+                    </button>
+                </Link>
+            </Footer>
+        </Wrapper>
     );
 };
 
 export default Home;
 
-const HomeWrapper = styled.div`
+
+const Wrapper = styled.div`
+    padding-top: 20px;
+    padding-left: 16px;
+    padding-right: 16px;
     width: 100%;
     height: 100vh;
 `
 
-const TopSection = styled.section`
+const Footer = styled.footer`
     width: calc(100% - 32px);
-    padding-left: 16px;
-    padding-right: 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    align-items: center;
-    margin-top: 20px;
+    position: absolute;
+    bottom: 0;
+    max-width: 768px;
+    height: 100px;
 
-    img {
-        align-self: flex-start;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+
+    button {
+        width: 171px;
+        height: 56px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
     }
 
-    & > div {
-        margin-top: 8px;
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-        align-items: center;
+    a {
+        text-decoration: none;
     }
 `

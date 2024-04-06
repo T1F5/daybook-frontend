@@ -9,8 +9,9 @@ import { Navigation } from "swiper/modules";
 import Card from "./Card";
 import SwiperFooter from "./SwiperFooter";
 import { useEffect, useState } from "react";
+import Impacted from "./Impacted";
 
-const HomeSwiper = () => {
+const MyWritingSwiper = () => {
 
     const mockArr = [0, 0, 0, 0, 0];
 
@@ -70,15 +71,16 @@ const HomeSwiper = () => {
                 onSlideChange={(swiper) => setCurrentIndex(swiper.activeIndex)}
             >
                 {mockArr.map((_, i) => <CardSlide key={i}>
-                    <Card isHome />
+                    <Card />
                 </CardSlide>)}
+                <Impacted impactNum={2} />
                 <SwiperFooter maxIndex={mockArr.length} currentIndex={currentIndex} />
             </Swiper>
         </>
     );
 };
 
-export default HomeSwiper;
+export default MyWritingSwiper;
 
 const CardSlide = styled(SwiperSlide)`
   background: none;
