@@ -1,13 +1,13 @@
-import { css } from "@emotion/react";
-import { PropsWithChildren } from "react";
+import { css } from '@emotion/react';
+import { PropsWithChildren } from 'react';
 
 function Layout({ children }: PropsWithChildren) {
-
   return (
     <div
       css={css`
         max-width: 768px;
         width: 100vw;
+        height: 100vh;
         border-left: 1px solid lightgray;
         border-right: 1px solid lightgray;
       `}

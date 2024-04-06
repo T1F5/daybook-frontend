@@ -1,7 +1,7 @@
-import { Global } from "@emotion/react";
-import emotionNormalize from "emotion-normalize";
-import { css } from "@emotion/react";
-import { colors } from "./colors";
+import { Global } from '@emotion/react';
+import emotionNormalize from 'emotion-normalize';
+import { css } from '@emotion/react';
+import { colors } from './colors';
 
 function GlobalStyles() {
   const globalStyle = css`
@@ -17,11 +17,6 @@ function GlobalStyles() {
 
     html,
     body {
-      width: 100%;
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       font-family: 'Nanum Myeongjo', serif;
       font-weight: 700;
 
@@ -46,9 +41,9 @@ function GlobalStyles() {
       // 모바일 환경에서 요소 클릭시 '파란색' 클릭 영역 표시 제거
       -webkit-tap-highlight-color: transparent;
     }
-  `
+  `;
 
-  return <Global styles={globalStyle} />
+  return <Global styles={globalStyle} />;
 }
 
-export default GlobalStyles
+export default GlobalStyles;
