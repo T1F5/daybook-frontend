@@ -32,11 +32,12 @@ const DefaultButton = styled.button`
 
   width: 100%;
   height: 56px;
-  background: ${colors.primaryDark};
   color: ${colors.white};
   cursor: pointer;
   border: none;
 
+  transition: 0.5s background-color;
+  background-color: ${colors.primaryDark};
   &:disabled {
     background-color: ${colors.grey30};
   }

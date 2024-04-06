@@ -12,6 +12,8 @@ import Textarea from './Textarea';
 import { GetDaybookResponse } from '@api/response';
 import { getCurrentDate } from '@utils/getCurrentDate';
 import Impacted from './Impacted';
+import hashtagIcon, { HashTagType } from '@assets/svg';
+import useImageDownload from '@hooks/useImageDownload';
 import { deleteDaybookById } from '@api';
 
 interface Props {
@@ -27,16 +29,19 @@ const Card = ({
   isDetail = false,
   isCurrent = true,
 }: Props) => {
+  const { target, asyncDownload } = useImageDownload();
   const { hearts, paperType, createdAt, content, hashtags, boardId } = daybook;
+  const hashtag = hashtags[0] as HashTagType;
+  const Icon = hashtagIcon[hashtag];
 
   const deleteDaybook = async (id: number) => {
     if (confirm('정말 삭제하시겠습니까?') === true) {
-      await deleteDaybookById(id)
+      await deleteDaybookById(id);
       window.location.reload();
     } else {
       return false;
     }
-  }
+  };
 
   return (
     <div
@@ -44,6 +49,7 @@ const Card = ({
         display: flex;
         flex-direction: column;
       `}
+      ref={target}
     >
       {!isHome && (
         <ExtraInfo>
@@ -55,13 +61,7 @@ const Card = ({
               ${getFontStyle('title2')}
             `}
           >
-            {/* TODO: API 연결 */}
-            <img
-              src="/src/assets/images/image.png"
-              width={48}
-              height={48}
-              alt="반응 이미지"
-            />
+            <Icon />
             {getCurrentDate(createdAt)}
           </div>
           <div
@@ -87,12 +87,12 @@ const Card = ({
         <CardHeader>
           <span>{hashtags[0]}</span>
           <div>
-            <DownloadIconSVG />
+            <DownloadIconSVG onClick={asyncDownload} />
             <DeleteSVG onClick={() => deleteDaybook(boardId)} />
           </div>
         </CardHeader>
         <CardMain readOnly value={content} />
-        {isHome && <Detail />}
+        {isHome && <Detail daybookId={boardId} />}
         {!isHome && !isDetail && <CardFooter />}
         {isDetail && <DetailFooter />}
       </Wrapper>
@@ -108,6 +108,7 @@ const ExtraInfo = styled.div`
   justify-content: space-between;
   align-items: flex-end;
   margin-bottom: 24px;
+  padding: 0 16px;
 `;
 
 const Wrapper = styled.article`
@@ -168,4 +169,5 @@ const CardMain = styled(Textarea)`
   flex-grow: 1;
   min-height: 210px;
   height: max-content;
+  white-space: pre-wrap;
 `;
