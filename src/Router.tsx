@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import ImageDownloadPage from "./pages/ImageDownloadPage";
 import A from "./pages/A";
 import Write from "./pages/write";
+import Auth from "@pages/Auth";
 
 const Router = () => {
   return (
@@ -12,6 +13,7 @@ const Router = () => {
         <Route path="/image-download" element={<ImageDownloadPage />} />
         <Route path="/write" element={<Write />} />
         <Route path="/a" element={<A />} />
+        <Route path="/auth" element={<Auth />} />
       </Routes>
     </BrowserRouter>
   );

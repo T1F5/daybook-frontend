@@ -2,6 +2,7 @@ import { css } from "@emotion/react";
 import { PropsWithChildren } from "react";
 
 function Layout({ children }: PropsWithChildren) {
+
   return (
     <div
       css={css`

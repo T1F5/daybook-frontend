@@ -1,6 +1,7 @@
-import { Global } from '@emotion/react'
-import emotionNormalize from 'emotion-normalize'
-import { css } from '@emotion/react'
+import { Global } from "@emotion/react";
+import emotionNormalize from "emotion-normalize";
+import { css } from "@emotion/react";
+import { colors } from "./colors";
 
 function GlobalStyles() {
   const globalStyle = css`
@@ -26,11 +27,18 @@ function GlobalStyles() {
 
       background-image: url('/background.png');
       background-size: cover;
+
+      overflow: hidden;
     }
 
     p {
       margin: 0;
     }
+
+    [type='radio'] {
+      accent-color: ${colors.primary};
+    }
+  `;
 
     *,
     :before,
