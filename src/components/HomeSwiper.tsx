@@ -12,50 +12,52 @@ import { useEffect, useState } from "react";
 import { fadeLeftDelayAnimation } from "@theme/animation";
 import { GetDaybookResponse } from "@api/response";
 import { getRandomDaybooks } from "@api";
+import LoadingSpinner from "./LoadingSpinner";
 
 const HomeSwiper = () => {
+  const [data, setData] = useState<GetDaybookResponse[]>([]);
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
 
-    const [data, setData] = useState<GetDaybookResponse[]>([]);
-    const [currentIndex, setCurrentIndex] = useState<number>(0);
+  useEffect(() => {
+    (async () => {
+      const { data } = await getRandomDaybooks();
+      setData(data);
+    })();
+  }, []);
 
-    useEffect(() => {
-        (async () => {
-            const { data } = await getRandomDaybooks();
-            setData(data);
-        })();
-    }, []);
+  if (!data) return <LoadingSpinner />;
 
-
-    return (
-        <>
-            <Swiper
-                css={css`
+  return (
+    <>
+      <Swiper
+        css={css`
           margin-top: 30px;
           width: 100%;
         `}
-                grabCursor={true}
-                centeredSlides={true}
-                slidesPerView={1.08}
-                coverflowEffect={{
-
-                    rotate: 10,
-                    stretch: 0,
-                    depth: 500,
-                    modifier: 2,
-                    slideShadows: true,
-                }}
-                navigation={true}
-                modules={[Navigation]}
-                className="mySwiper"
-                onSlideChange={(swiper) => setCurrentIndex(swiper.activeIndex)}
-            >
-                {data.map((x, i) => <CardSlide key={i}>
-                    <Card isHome isCurrent={i === currentIndex} daybook={x} />
-                </CardSlide>)}
-                <SwiperFooter maxIndex={data.length} currentIndex={currentIndex} />
-            </Swiper>
-        </>
-    );
+        grabCursor={true}
+        centeredSlides={true}
+        slidesPerView={1.08}
+        coverflowEffect={{
+          rotate: 10,
+          stretch: 0,
+          depth: 500,
+          modifier: 2,
+          slideShadows: true,
+        }}
+        navigation={true}
+        modules={[Navigation]}
+        className="mySwiper"
+        onSlideChange={(swiper) => setCurrentIndex(swiper.activeIndex)}
+      >
+        {data.map((x, i) => (
+          <CardSlide key={i}>
+            <Card isHome isCurrent={i === currentIndex} daybook={x} />
+          </CardSlide>
+        ))}
+        <SwiperFooter maxIndex={data.length} currentIndex={currentIndex} />
+      </Swiper>
+    </>
+  );
 };
 
 export default HomeSwiper;

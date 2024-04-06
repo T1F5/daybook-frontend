@@ -11,6 +11,7 @@ import SwiperFooter from './SwiperFooter';
 import { useEffect, useState } from 'react';
 import { getDaybookList } from '@api';
 import { GetDaybookResponse } from '@api/response';
+import LoadingSpinner from './LoadingSpinner';
 
 const MyWritingSwiper = () => {
   const [data, setData] = useState<GetDaybookResponse[]>([]);
@@ -22,6 +23,8 @@ const MyWritingSwiper = () => {
       setData(data);
     })();
   }, []);
+
+  if (!data) return <LoadingSpinner />;
 
   return (
     <>

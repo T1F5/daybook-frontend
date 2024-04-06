@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { GetDaybookResponse } from "@api/response";
 import { getDaybook } from "@api";
+import LoadingSpinner from "./LoadingSpinner";
 
 const OthersWriting = () => {
 
@@ -26,6 +27,8 @@ const OthersWriting = () => {
 
         getData(id);
     }, [id]);
+
+    if (!daybookData) return <LoadingSpinner />;
 
     return (
         <>
