@@ -1,11 +1,10 @@
-import axios from 'axios';
+import axios from "axios";
 
 const client = axios.create({
-  baseURL: 'http://13.125.171.40:8080/ ',
+  baseURL: "http://13.125.171.40:8080/",
   headers: {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
   },
-  withCredentials: true,
 });
 
 client.interceptors.request.use((config) => {
@@ -13,7 +12,7 @@ client.interceptors.request.use((config) => {
 
   let token: string | null = null;
 
-  token = localStorage.getItem('accessToken');
+  token = localStorage.getItem("accessToken");
 
   if (token !== null) {
     config.headers.Authorization = `Bearer ${token}`;

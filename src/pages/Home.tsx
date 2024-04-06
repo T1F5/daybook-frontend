@@ -17,7 +17,7 @@ const Home = () => {
             <p
                 css={css`
                 margin-left: 16px;
-                margin-top: 40px;
+                margin-top: 20px;
             white-space: pre-wrap;
             ${getFontStyle('header1')}
           `}

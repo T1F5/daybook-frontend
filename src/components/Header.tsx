@@ -6,6 +6,7 @@ import getFontStyle from "@theme/font/getFontSize";
 import { ComponentProps, PropsWithChildren, useCallback } from "react";
 import { colors } from "@theme";
 import { Link } from "react-router-dom";
+import useAuth from "@hooks/useAuth";
 
 interface Props {
   title?: string;
@@ -23,10 +24,14 @@ function Header({ title, children }: PropsWithChildren<Props>) {
 function Button({
   variety,
   ...attributes
-}: ComponentProps<"button"> & { variety: "back" | "home" | "write" }) {
+}: ComponentProps<"button"> & { variety: "back" | "home" | "write" | "logout" }) {
+
+  const { logout } = useAuth();
+
   const renderSVG = useCallback(() => {
     if (variety === "back") return <ChevronLeftSVG />;
     if (variety === "home") return <HomeSVG />;
+    if (variety === "logout") return <LogoutButton onClick={logout}>로그아웃</LogoutButton>;
   }, [variety]);
 
   if (variety === "write") return <WriteCTA />;
@@ -89,4 +94,10 @@ const WriteCTAButton = styled(Link)`
     color: white;
     ${getFontStyle('title4')}
   }
+`
+
+const LogoutButton = styled.span`
+  color: ${colors.primaryDark};
+  ${getFontStyle('body4')};
+  cursor: pointer;
 `

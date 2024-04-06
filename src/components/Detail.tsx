@@ -1,11 +1,14 @@
 import styled from "@emotion/styled";
 import { colors } from "@theme";
 import getFontStyle from "@theme/font/getFontSize";
+import { Link } from "react-router-dom";
 
 const Detail = () => {
     return (
         <Wrapper>
-            자세히 보기
+            <Link to={'/my'}>
+                자세히 보기
+            </Link>
         </Wrapper>
     );
 };
@@ -23,4 +26,9 @@ const Wrapper = styled.section`
     display: flex;
     justify-content: center;
     align-items: center;
+
+    a {
+        text-decoration: none;
+        color: white;
+    }
 `
