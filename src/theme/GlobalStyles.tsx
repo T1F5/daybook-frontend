@@ -14,7 +14,7 @@ function GlobalStyles() {
       font-family: 'Nanum Myeongjo', serif;
       font-weight: 700;
 
-      background-image: url("/src/assets/images/background.png");
+      background-image: url('/src/assets/images/background.png');
       background-size: cover;
       overflow: hidden;
     }
@@ -27,6 +27,10 @@ function GlobalStyles() {
       user-select: none;
       // https://caniuse.com/webkit-user-drag
       -webkit-user-drag: none;
+    }
+
+    a {
+      text-decoration: none;
     }
 
     [type='radio'] {

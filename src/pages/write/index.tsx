@@ -14,7 +14,7 @@ import { daybookAtom, tagInputAtom } from '@state/daybook';
 import { useEffect } from 'react';
 import { RESET } from 'jotai/utils';
 import { fadeLeftAnimation } from '@theme/animation';
-import { useParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 const STEP_COMPONENTS = {
   [STEP.선택]: 선택,
@@ -26,7 +26,8 @@ const STEP_COMPONENTS = {
 
 function Write() {
   const { step, nextStep, previousStep } = useStep();
-  const { from } = useParams();
+  const [searchParams] = useSearchParams();
+  const query = searchParams.get('from');
 
   const StepComponent = STEP_COMPONENTS[step];
   const { title, description, buttonText } = StepContentMap.get(
@@ -62,7 +63,7 @@ function Write() {
             ${fadeLeftAnimation}
           `}
         >
-          {step === '완료' && from === 'new'
+          {step === '완료' && query === 'new'
             ? '축하합니다!\n첫 일지 기록을 완료하였습니다'
             : title}
         </p>

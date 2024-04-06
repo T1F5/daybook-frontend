@@ -12,6 +12,8 @@ import Textarea from './Textarea';
 import { GetDaybookResponse } from '@api/response';
 import { getCurrentDate } from '@utils/getCurrentDate';
 import Impacted from './Impacted';
+import hashtagIcon, { HashTagType } from '@assets/svg';
+import useImageDownload from '@hooks/useImageDownload';
 
 interface Props {
   daybook: GetDaybookResponse;
@@ -27,6 +29,10 @@ const Card = ({
   isCurrent = true,
 }: Props) => {
   const { hearts, paperType, createdAt, content, hashtags } = daybook;
+  const hashtag = hashtags[0] as HashTagType;
+  const Icon = hashtagIcon[hashtag];
+
+  const { target, asyncDownload } = useImageDownload();
 
   return (
     <div
@@ -34,6 +40,7 @@ const Card = ({
         display: flex;
         flex-direction: column;
       `}
+      ref={target}
     >
       {!isHome && (
         <ExtraInfo>
@@ -45,13 +52,7 @@ const Card = ({
               ${getFontStyle('title2')}
             `}
           >
-            {/* TODO: API 연결 */}
-            <img
-              src="/src/assets/images/image.png"
-              width={48}
-              height={48}
-              alt="반응 이미지"
-            />
+            <Icon />
             {getCurrentDate(createdAt)}
           </div>
           <div
@@ -77,7 +78,7 @@ const Card = ({
         <CardHeader>
           <span>{hashtags[0]}</span>
           <div>
-            <DownloadIconSVG />
+            <DownloadIconSVG onClick={asyncDownload} />
             <MoreIconSVG />
           </div>
         </CardHeader>
@@ -98,6 +99,7 @@ const ExtraInfo = styled.div`
   justify-content: space-between;
   align-items: flex-end;
   margin-bottom: 24px;
+  padding: 0 16px;
 `;
 
 const Wrapper = styled.article`
@@ -158,4 +160,5 @@ const CardMain = styled(Textarea)`
   flex-grow: 1;
   min-height: 210px;
   height: max-content;
+  white-space: pre-wrap;
 `;
