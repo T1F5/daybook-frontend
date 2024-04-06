@@ -3,22 +3,15 @@ import styled from '@emotion/styled';
 import getFontStyle from "@theme/font/getFontSize";
 import { css } from '@emotion/react';
 import MyWritingSwiper from "@components/MyWritingSwiper";
+import { getCurrentDate } from "@utils/getCurrentDate";
 
 const MyWritings = () => {
-
-    const getCurrentDate = () => {
-        const today = new Date();
-        const year = today.getFullYear();
-        const month = String(today.getMonth() + 1).padStart(2, '0');
-        const day = String(today.getDate()).padStart(2, '0');
-        return `${year}년 ${month}월 ${day}일`;
-    }
-
 
     return (
         <HomeWrapper>
             <Header>
                 <Header.Button variety="write" />
+                <Header.Button variety="logout" />
             </Header>
 
             <TopSection>
