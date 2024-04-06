@@ -12,7 +12,7 @@ const PreLogin: FC<PreLoginTemplateProps> = ({ setLandingFunnelState }) => {
             height: 100vh;
             position: relative;
 
-            background-image: url('/background_landing.png');
+            background-image: url('/src/assets/images/background_landing.png');
             background-size: cover;
         `}>
             <section css={css`
@@ -24,7 +24,7 @@ const PreLogin: FC<PreLoginTemplateProps> = ({ setLandingFunnelState }) => {
                     padding-right: 10px;
                 }
             `}>
-                <img src="/kakao_landing.png" alt="kakao login background" width={"100%"} />
+                <img src="/src/assets/images/kakao_landing.png" alt="kakao login background" width={"100%"} />
             </section>
             <KakaoLoginButton setLandingFunnelState={setLandingFunnelState} />
         </div>

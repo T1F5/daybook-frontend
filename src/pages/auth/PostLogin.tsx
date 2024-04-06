@@ -10,7 +10,7 @@ const PostLogin = () => {
         height: 100vh;
         position: relative;
 
-        background-image: url('/background_landing.png');
+        background-image: url('/src/assets/images/background_landing.png');
         background-size: cover;
     `}>
             <section css={css`
@@ -22,7 +22,7 @@ const PostLogin = () => {
                 padding-right: 10px;
             }
         `}>
-                <img src="/kakao_landing_after.png" alt="kakao login complete background" width={"100%"} />
+                <img src="/src/assets/images/kakao_landing_after.png" alt="kakao login complete background" width={"100%"} />
             </section>
             <div
                 css={css`
