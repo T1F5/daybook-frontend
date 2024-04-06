@@ -1,5 +1,6 @@
 import { postDaybook } from '@api';
 import { daybookAtom } from '@state/daybook';
+import { PaperType, paperTypeState } from '@state/paperType';
 import { useAtomValue } from 'jotai';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -80,6 +81,7 @@ const useStep = () => {
 
   const [step, setStep] = useState<StepType>(STEP.선택);
   const daybook = useAtomValue(daybookAtom);
+  const paperType = useAtomValue(paperTypeState);
 
   const nextStep = async () => {
     const nextStep = StepContentMap.get(step)?.nextStep;
@@ -93,7 +95,7 @@ const useStep = () => {
     // 일지 API 전송
     if (nextStep === STEP.완료) {
       try {
-        await postDaybook(daybook);
+        await postDaybook({ ...daybook, paperType: paperType as PaperType });
       } catch {
         alert('일시적인 오류가 발생했습니다. 😳');
         navigate('/', { replace: true });
