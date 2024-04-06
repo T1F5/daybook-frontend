@@ -8,14 +8,23 @@ import "swiper/css/pagination";
 import { Navigation } from "swiper/modules";
 import Card from "./Card";
 import SwiperFooter from "./SwiperFooter";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { fadeLeftDelayAnimation } from "@theme/animation";
+import { GetDaybookResponse } from "@api/response";
+import { getDaybookList } from "@api";
 
 const HomeSwiper = () => {
 
-    const mockArr = [0, 0, 0, 0, 0];
-
+    const [data, setData] = useState<GetDaybookResponse[]>([]);
     const [currentIndex, setCurrentIndex] = useState<number>(0);
+
+    useEffect(() => {
+        (async () => {
+            const { data } = await getDaybookList();
+            setData(data);
+        })();
+    }, []);
+
 
     return (
         <>
@@ -40,10 +49,10 @@ const HomeSwiper = () => {
                 className="mySwiper"
                 onSlideChange={(swiper) => setCurrentIndex(swiper.activeIndex)}
             >
-                {mockArr.map((_, i) => <CardSlide key={i}>
-                    <Card isHome isCurrent={i === currentIndex} />
+                {data.map((x, i) => <CardSlide key={i}>
+                    <Card isHome isCurrent={i === currentIndex} daybook={x} />
                 </CardSlide>)}
-                <SwiperFooter maxIndex={mockArr.length} currentIndex={currentIndex} />
+                <SwiperFooter maxIndex={data.length} currentIndex={currentIndex} />
             </Swiper>
         </>
     );
