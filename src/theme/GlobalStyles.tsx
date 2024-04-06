@@ -24,8 +24,12 @@ function GlobalStyles() {
       font-family: "Nanum Myeongjo", serif;
       font-weight: 700;
 
-      background-image: url('/background.png');
+      background-image: url("/background.png");
       background-size: cover;
+    }
+
+    p {
+      margin: 0;
     }
   `;
 
