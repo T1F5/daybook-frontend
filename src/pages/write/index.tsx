@@ -47,7 +47,7 @@ function Write() {
         >
           {description}
         </p>
-        <>{STEP_COMPONENTS[step]}</>
+        <>{STEP_COMPONENTS[step]()}</>
       </Wrapper>
       <FloatingButtonWrapper>
         <Button onClick={nextStep}>{buttonText}</Button>
