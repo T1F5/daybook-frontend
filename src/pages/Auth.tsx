@@ -1,11 +1,9 @@
-import Header from "@components/Header";
 import KakaoLoginButton from "@components/KakaoLoginButton";
 import Button from "@components/common/Button";
 import { css } from '@emotion/react';
-import getFontStyle from "@theme/font/getFontSize";
 import { useEffect, useState } from "react";
 
-export type LandingFunnelStateProps = "pre-login" | "post-login" | "select-note";
+export type LandingFunnelStateProps = "pre-login" | "post-login";
 
 const Auth = () => {
 
@@ -19,49 +17,6 @@ const Auth = () => {
         setLandingFunnelState("post-login")
 
     }, [userId])
-
-    if (landingFunnelState === 'select-note') {
-        return <div css={css`
-        padding-left: 16px;
-        padding-right: 16px;
-        height: 100vh;
-        position: relative;
-        `}>
-            <Header>
-                일지 작성하기
-            </Header>
-            <div css={css`
-                display: flex;
-                width: 100%;
-                flex-direction: column;
-
-            `}>
-                <div css={css`
-                margin-top: 32px;
-                    ${getFontStyle('header1')}
-                `}>
-                    어떤 형태로
-                </div>
-                <div css={css`
-                    ${getFontStyle('header1')}
-                `}>
-                    일지를 작성할까요?
-                </div>
-                <div css={css`
-                    margin-top: 9px;
-                    font-weight: 400;
-                    ${getFontStyle('title4')}
-                `}>
-                    마음에 드는 메모지 형태를 선택해주세요
-                </div>
-                <div css={css`
-                    width: 100%;
-                `}>
-
-                </div>
-            </div>
-        </div>
-    }
 
     if (landingFunnelState === 'post-login') {
         return <div css={css`
