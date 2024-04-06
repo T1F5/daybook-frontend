@@ -1,17 +1,29 @@
 import styled from "@emotion/styled";
 import getFontStyle from "@theme/font/getFontSize";
-import ChatSVG from "@assets/svg/ico_chat.svg?react";
 import { colors } from "@theme";
+import { postReactions } from "@api";
+import { REACTION_TYPE } from "@api/response";
 
-const DetailCardFooter = () => {
+interface DetailCardFooterProps {
+    boardId: number;
+}
+
+const DetailCardFooter = ({ boardId }: DetailCardFooterProps) => {
+
+    const post = async (reactionType: keyof typeof REACTION_TYPE, id: number) => {
+        const res = await postReactions(reactionType, id);
+        if (res.status === 409) {
+            alert("이미 공감한 글입니다!")
+        }
+    }
+
     return (
         <Wrapper>
             <div>
-                <ButtonText>추앙해요 ${2}</ButtonText>
-                <ButtonText>감동이에요 ${2}</ButtonText>
-                <ButtonText>대단해요 ${2}</ButtonText>
+                <ButtonText onClick={() => post(REACTION_TYPE.ADMIRE, boardId)}>추앙해요 {2}</ButtonText>
+                <ButtonText onClick={() => post(REACTION_TYPE.MOVING, boardId)}>감동이에요 {2}</ButtonText>
+                <ButtonText onClick={() => post(REACTION_TYPE.GREAT, boardId)}>대단해요 {2}</ButtonText>
             </div>
-            <ChatSVG />
         </Wrapper>
     );
 };

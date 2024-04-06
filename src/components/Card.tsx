@@ -94,7 +94,7 @@ const Card = ({
         <CardMain readOnly value={content} />
         {isHome && <Detail daybookId={boardId} />}
         {!isHome && !isDetail && <CardFooter />}
-        {isDetail && <DetailFooter />}
+        {isDetail && <DetailFooter boardId={boardId} />}
       </Wrapper>
       <Impacted impactNum={hearts} />
     </div>
