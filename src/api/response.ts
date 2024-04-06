@@ -17,4 +17,5 @@ export type GetDaybookResponse = {
   hearts: number;
   hashtags: string[];
   paperType: string;
+  createdAt: string;
 };

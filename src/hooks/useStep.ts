@@ -67,7 +67,7 @@ export const StepContentMap = new Map<StepType, StepContent>([
   [
     STEP.완료,
     {
-      title: '축하합니다!\n첫 일지 기록을 완료하였습니다',
+      title: '일지 기록을\n성공적으로 완료하였습니다',
       description: '다른 사람의 일지도 둘러보세요',
       buttonText: '다른 사람 일지 보기',
       previousStep: null,

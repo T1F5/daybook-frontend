@@ -22,8 +22,8 @@ export const getDaybook = async (id: string) => {
   return data;
 };
 
-export const getMyDaybook = async () => {
+export const getDaybookList = async () => {
   const { data } =
-    await client.get<Response<GetDaybookResponse[]>>(`/board/boards`);
+    await client.get<Response<GetDaybookResponse[]>>("/board/boards");
   return data;
 };
