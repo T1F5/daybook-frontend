@@ -35,7 +35,7 @@ const OthersWriting = () => {
             </Header>
 
             <Wrapper>
-                {daybookData && <Card isDetail daybookData={daybookData} />}
+                {daybookData && <Card isDetail daybook={daybookData} />}
             </Wrapper>
 
             <OthersWritingFooter />
