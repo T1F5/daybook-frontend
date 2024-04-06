@@ -11,7 +11,7 @@ import SwiperFooter from "./SwiperFooter";
 import { useEffect, useState } from "react";
 import { fadeLeftDelayAnimation } from "@theme/animation";
 import { GetDaybookResponse } from "@api/response";
-import { getDaybookList } from "@api";
+import { getRandomDaybooks } from "@api";
 
 const HomeSwiper = () => {
 
@@ -20,7 +20,7 @@ const HomeSwiper = () => {
 
     useEffect(() => {
         (async () => {
-            const { data } = await getDaybookList();
+            const { data } = await getRandomDaybooks();
             setData(data);
         })();
     }, []);
