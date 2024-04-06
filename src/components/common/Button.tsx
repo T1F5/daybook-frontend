@@ -36,7 +36,6 @@ const DefaultButton = styled.button`
     justify-content: center;
     align-items: center;
     border: none;
-    font-family: 'Nanum Myeongjo', serif;
 `;
 
 const ButtonObj = {
