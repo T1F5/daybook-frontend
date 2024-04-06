@@ -5,7 +5,7 @@ import { colors } from "./colors";
 
 function GlobalStyles() {
   const globalStyle = css`
-    @import url("https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap");
+    @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap');
 
     ${emotionNormalize};
 
@@ -22,10 +22,10 @@ function GlobalStyles() {
       display: flex;
       justify-content: center;
       align-items: center;
-      font-family: "Nanum Myeongjo", serif;
+      font-family: 'Nanum Myeongjo', serif;
       font-weight: 700;
 
-      background-image: url("/background.png");
+      background-image: url('/background.png');
       background-size: cover;
 
       overflow: hidden;
@@ -40,7 +40,16 @@ function GlobalStyles() {
     }
   `;
 
-  return <Global styles={globalStyle} />;
+    *,
+    :before,
+    :after {
+      box-sizing: border-box;
+      // 모바일 환경에서 요소 클릭시 '파란색' 클릭 영역 표시 제거
+      -webkit-tap-highlight-color: transparent;
+    }
+  `
+
+  return <Global styles={globalStyle} />
 }
 
-export default GlobalStyles;
+export default GlobalStyles
