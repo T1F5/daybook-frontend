@@ -4,8 +4,9 @@ import { css } from "@emotion/react";
 
 function GlobalStyles() {
   const globalStyle = css`
+    @import url("https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap");
+
     ${emotionNormalize};
-    @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap');
 
     img {
       user-select: none;
