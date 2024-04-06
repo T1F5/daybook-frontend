@@ -8,5 +8,9 @@ module.exports = {
   ],
   ignorePatterns: ["dist", ".eslintrc.cjs"],
   parser: "@typescript-eslint/parser",
-  plugins: ["react-refresh"],
+  rules: {
+    rules: {
+      "react/react-in-jsx-scope": "off",
+    },
+  },
 };
