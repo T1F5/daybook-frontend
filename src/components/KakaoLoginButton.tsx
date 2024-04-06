@@ -31,7 +31,7 @@ const login = async (code: string, setUserId: (id: number) => void) => {
     return res;
 }
 
-interface KakaoLoginButtonProps {
+export interface KakaoLoginButtonProps {
     setLandingFunnelState: Dispatch<SetStateAction<LandingFunnelStateProps>>;
 }
 
