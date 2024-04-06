@@ -27,3 +27,12 @@ export const getDaybookList = async () => {
     await client.get<Response<GetDaybookResponse[]>>("/board/boards");
   return data;
 };
+
+export const deleteDaybookById = async (id: number) => {
+  const { data } = await client.delete<
+    Response<{
+      boardId: number;
+    }>
+  >(`/board/${id}`);
+  return data;
+};

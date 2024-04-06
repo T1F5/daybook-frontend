@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { colors } from '@theme';
 import getFontStyle from '@theme/font/getFontSize';
 import DownloadIconSVG from '@assets/svg/ico_download.svg?react';
-import MoreIconSVG from '@assets/svg/ico_more.svg?react';
+import DeleteSVG from '@assets/svg/ico_delete.svg?react';
 import { css } from '@emotion/react';
 import CardFooter from './CardFooter';
 
@@ -12,6 +12,7 @@ import Textarea from './Textarea';
 import { GetDaybookResponse } from '@api/response';
 import { getCurrentDate } from '@utils/getCurrentDate';
 import Impacted from './Impacted';
+import { deleteDaybookById } from '@api';
 
 interface Props {
   daybook: GetDaybookResponse;
@@ -26,7 +27,16 @@ const Card = ({
   isDetail = false,
   isCurrent = true,
 }: Props) => {
-  const { hearts, paperType, createdAt, content, hashtags } = daybook;
+  const { hearts, paperType, createdAt, content, hashtags, boardId } = daybook;
+
+  const deleteDaybook = async (id: number) => {
+    if (confirm('정말 삭제하시겠습니까?') === true) {
+      await deleteDaybookById(id)
+      window.location.reload();
+    } else {
+      return false;
+    }
+  }
 
   return (
     <div
@@ -78,7 +88,7 @@ const Card = ({
           <span>{hashtags[0]}</span>
           <div>
             <DownloadIconSVG />
-            <MoreIconSVG />
+            <DeleteSVG onClick={() => deleteDaybook(boardId)} />
           </div>
         </CardHeader>
         <CardMain readOnly value={content} />
