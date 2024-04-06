@@ -3,11 +3,11 @@ import { useLocation, useNavigate } from "react-router-dom"
 
 const useAuth = () => {
 
-    const location = useLocation();
-
-    const navigate = useNavigate();
-
     const AuthRequired = () => {
+
+        const location = useLocation();
+
+        const navigate = useNavigate();
 
         const userId = localStorage.getItem("userId");
 
@@ -26,7 +26,7 @@ const useAuth = () => {
         localStorage.removeItem("userId");
         localStorage.removeItem("accessToken");
         localStorage.removeItem("refreshToken");
-        navigate('/auth', { replace: true })
+        window.location.pathname = "/auth"
     }
 
     return { logout, AuthRequired }

@@ -2,8 +2,31 @@ import styled from "@emotion/styled";
 import Header from "./Header";
 import Card from "./Card";
 import OthersWritingFooter from "./OthersDayBookFooter";
+import { fadeLeftDelayAnimation } from "@theme/animation";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { GetDaybookResponse } from "@api/response";
+import { getDaybook } from "@api";
 
 const OthersWriting = () => {
+
+    const { id } = useParams();
+
+    const [daybookData, setDaybookData] = useState<GetDaybookResponse | null>(null);
+
+    const getData = async () => {
+        const res = await getDaybook();
+        if (!res || !res.data) return;
+
+        setDaybookData(res.data);
+    }
+
+    useEffect(() => {
+        if (!id) return;
+
+        getData();
+    }, [id]);
+
     return (
         <>
             <Header>
@@ -12,7 +35,7 @@ const OthersWriting = () => {
             </Header>
 
             <Wrapper>
-                <Card isDetail />
+                {daybookData && <Card isDetail />}
             </Wrapper>
 
             <OthersWritingFooter />
@@ -30,4 +53,5 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    ${fadeLeftDelayAnimation};
 `

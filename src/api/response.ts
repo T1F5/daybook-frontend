@@ -7,3 +7,14 @@ export type PostDaybookResponse = {
   respectBoardId: number;
   hashtags: string;
 };
+
+export type GetDaybookResponse = {
+  boardId: number;
+  content: string;
+  respectBoardId: number | null;
+  authoreId: number;
+  category: string;
+  hearts: number;
+  hastags: string[];
+  paperType: string;
+};
