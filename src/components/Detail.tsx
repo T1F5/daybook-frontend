@@ -3,10 +3,14 @@ import { colors } from "@theme";
 import getFontStyle from "@theme/font/getFontSize";
 import { Link } from "react-router-dom";
 
-const Detail = () => {
+interface DetailProps {
+    daybookId: number;
+}
+
+const Detail = ({ daybookId }: DetailProps) => {
     return (
         <Wrapper>
-            <Link to={'/my'}>
+            <Link to={`/detail/${daybookId}`}>
                 자세히 보기
             </Link>
         </Wrapper>
