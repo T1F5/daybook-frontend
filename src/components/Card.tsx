@@ -10,30 +10,31 @@ import Detail from "./Detail";
 import DetailFooter from "./DetailCardFooter";
 import Textarea from "./Textarea";
 import { GetDaybookResponse } from "@api/response";
+import hashtagIcon from "@assets/svg";
 
-import 용기 from "@assets/svg/courage.svg?react";
-import 공감 from "@assets/svg/empathy.svg?react";
-import 배려 from "@assets/svg/consideration.svg?react";
-import 사랑 from "@assets/svg/love.svg?react";
-import 양보 from "@assets/svg/compromise.svg?react";
-import 용서 from "@assets/svg/forgiveness.svg?react";
-import 이해 from "@assets/svg/understanding.svg?react";
-import 행복 from "@assets/svg/happiness.svg?react";
-import 협동 from "@assets/svg/cooperation.svg?react";
-import 희망 from "@assets/svg/hope.svg?react";
+// import 용기 from "@assets/svg/courage.svg?react";
+// import 공감 from "@assets/svg/empathy.svg?react";
+// import 배려 from "@assets/svg/consideration.svg?react";
+// import 사랑 from "@assets/svg/love.svg?react";
+// import 양보 from "@assets/svg/compromise.svg?react";
+// import 용서 from "@assets/svg/forgiveness.svg?react";
+// import 이해 from "@assets/svg/understanding.svg?react";
+// import 행복 from "@assets/svg/happiness.svg?react";
+// import 협동 from "@assets/svg/cooperation.svg?react";
+// import 희망 from "@assets/svg/hope.svg?react";
 
-const hashtagIcon = {
-  용기,
-  공감,
-  배려,
-  사랑,
-  양보,
-  용서,
-  이해,
-  행복,
-  협동,
-  희망,
-};
+// const hashtagIcon = {
+//   용기,
+//   공감,
+//   배려,
+//   사랑,
+//   양보,
+//   용서,
+//   이해,
+//   행복,
+//   협동,
+//   희망,
+// };
 
 interface CardType {
   isHome?: boolean;
@@ -49,7 +50,7 @@ const Card: FC<CardType> = ({
   daybookData,
 }) => {
 
-  const HashTag = hashtagIcon[daybookData.hastags && daybookData.hastags[0] as keyof typeof hashtagIcon];
+  const HashTag = daybookData.hashtags && hashtagIcon[daybookData.hashtags && daybookData.hashtags[0] as keyof typeof hashtagIcon];
 
   return (
     <Wrapper
@@ -68,7 +69,7 @@ const Card: FC<CardType> = ({
     >
       <CardHeader>
         <HashTag />
-        <span>{daybookData.hastags[0]}</span>
+        <span>{daybookData.hashtags[0]}</span>
         <div
           css={css`
             @media screen and(max-width: 480px) {

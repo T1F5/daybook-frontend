@@ -15,6 +15,6 @@ export type GetDaybookResponse = {
   authoreId: number;
   category: string;
   hearts: number;
-  hastags: string[];
+  hashtags: string[];
   paperType: string;
 };
