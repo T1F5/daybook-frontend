@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 export const STEP = {
+  선택: "선택",
   쓰기: "쓰기",
   탄생: "탄생",
   형태: "형태",
@@ -19,12 +20,22 @@ export type StepContent = {
 
 export const StepContentMap = new Map<StepType, StepContent>([
   [
+    STEP.선택,
+    {
+      title: "어떤 형태로\n일지를 작성할까요?",
+      description: "마음에 드는 메모지 형태를 선택해주세요",
+      buttonText: "선택완료",
+      previousStep: null,
+      nextStep: STEP.쓰기,
+    }
+  ],
+  [
     STEP.쓰기,
     {
       title: "오늘 내 마음의 평화를 이룬\n이유를 기록해주세요",
       description: "Tip. 종이를 누르면 기록을 시작할 수 있어요",
       buttonText: "작성완료",
-      previousStep: null,
+      previousStep: STEP.선택,
       nextStep: STEP.탄생,
     },
   ],
@@ -61,7 +72,7 @@ export const StepContentMap = new Map<StepType, StepContent>([
 ]);
 
 const useStep = () => {
-  const [step, setStep] = useState<StepType>(STEP.쓰기);
+  const [step, setStep] = useState<StepType>(STEP.선택);
 
   const nextStep = () => {
     const nextStep = StepContentMap.get(step)?.nextStep;

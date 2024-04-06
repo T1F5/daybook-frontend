@@ -8,8 +8,10 @@ import 쓰기 from '@pages/write/쓰기'
 import 완료 from '@pages/write/완료'
 import 탄생 from '@pages/write/탄생'
 import 형태 from '@pages/write/형태'
+import 선택 from '@pages/write/선택'
 
 const STEP_COMPONENTS = {
+  [STEP.선택]: 선택,
   [STEP.쓰기]: 쓰기,
   [STEP.완료]: 완료,
   [STEP.탄생]: 탄생,
@@ -25,7 +27,7 @@ function Write() {
   return (
     <>
       <Header title="일지 작성하기">
-        {step !== '완료' && (
+        {step !== '완료' && step !== '선택' && (
           <Header.Button variety="back" onClick={previousStep} />
         )}
       </Header>
@@ -47,7 +49,7 @@ function Write() {
         >
           {description}
         </p>
-        <>{STEP_COMPONENTS[step]}</>
+        <>{STEP_COMPONENTS[step]()}</>
       </Wrapper>
       <FloatingButtonWrapper>
         <Button onClick={nextStep}>{buttonText}</Button>
