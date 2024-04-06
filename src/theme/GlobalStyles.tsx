@@ -4,6 +4,8 @@ import { css } from "@emotion/react";
 
 function GlobalStyles() {
   const globalStyle = css`
+    @import url("https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap");
+
     ${emotionNormalize};
 
     img {
@@ -19,6 +21,7 @@ function GlobalStyles() {
       display: flex;
       justify-content: center;
       align-items: center;
+      font-family: "Nanum Myeongjo", serif;
     }
   `;
 

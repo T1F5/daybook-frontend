@@ -1,5 +1,11 @@
+import Header from "@components/Header";
+
 function Write() {
-  return <div>Write</div>;
+  return (
+    <div>
+      <Header />
+    </div>
+  );
 }
 
 export default Write;
