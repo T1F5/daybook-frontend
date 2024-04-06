@@ -35,6 +35,7 @@ const DefaultButton = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
     border: none;
 `;
 
