@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import Header from "./Header";
 import Card from "./Card";
-import OthersWritingFooter from "./OthersWritingFooter";
+import OthersWritingFooter from "./OthersDayBookFooter";
 
 const OthersWriting = () => {
     return (

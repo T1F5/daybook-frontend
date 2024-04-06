@@ -28,8 +28,7 @@ const Wrapper = styled.article`
     width: 100%;
     height: 156px;
 
-    padding-left: 16px;
-    padding-right: 16px;
+    padding: 8px 16px;
 
     display: flex;
     justify-content: space-evenly;

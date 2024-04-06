@@ -1,11 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import MyWritings from "./pages/MyWritings";
 import ImageDownloadPage from "./pages/ImageDownloadPage";
 import A from "./pages/A";
 import Write from "./pages/write";
 import Auth from "@pages/Auth";
 import Home from "@pages/Home";
-import OthersWriting from "@components/OthersWriting";
+import OthersWriting from "@components/OthersDayBook";
+import MyWritings from "@pages/MyDayBook";
 
 const Router = () => {
   return (

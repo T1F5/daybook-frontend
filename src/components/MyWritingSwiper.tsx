@@ -71,7 +71,7 @@ const MyWritingSwiper = () => {
                 onSlideChange={(swiper) => setCurrentIndex(swiper.activeIndex)}
             >
                 {mockArr.map((_, i) => <CardSlide key={i}>
-                    <Card />
+                    <Card isCurrent={currentIndex === i} />
                 </CardSlide>)}
                 <Impacted impactNum={2} />
                 <SwiperFooter maxIndex={mockArr.length} currentIndex={currentIndex} />

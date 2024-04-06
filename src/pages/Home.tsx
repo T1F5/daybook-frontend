@@ -16,6 +16,7 @@ const Home = () => {
             </Header>
             <p
                 css={css`
+                margin-left: 16px;
                 margin-top: 40px;
             white-space: pre-wrap;
             ${getFontStyle('header1')}
@@ -26,7 +27,10 @@ const Home = () => {
 
             <HomeSwiper />
 
-            <Footer>
+            <Footer css={css`
+                margin-left: 16px;
+                margin-right: 16px;
+            `}>
                 <Link to={'/my'}>
                     <button>
                         <HumanSVG />
@@ -36,6 +40,7 @@ const Home = () => {
                 <Link to={'/write'}>
                     <button css={css`
                     background-color: ${colors.primaryDark};
+                    border: none;
                     color: white;
                 `}>
                         <AddIconSVG />
@@ -52,8 +57,6 @@ export default Home;
 
 const Wrapper = styled.div`
     padding-top: 20px;
-    padding-left: 16px;
-    padding-right: 16px;
     width: 100%;
     height: 100vh;
 `

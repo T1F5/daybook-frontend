@@ -75,7 +75,7 @@ const TouchableButton = styled.button`
 const WriteCTAButton = styled(Link)`
   width: 106px;
   height: 40px;
-  background: ${colors.primaryDark};
+  background-color: ${colors.primaryDark};
   display: flex;
   justify-content: center;
   align-items: center;

@@ -34,7 +34,7 @@ const CardIndicator: FC<CardIndicatorProps> = ({ maxIndex, currentIndex }) => {
 export default CardIndicator;
 
 const Wrapper = styled.div`
-    width: 64px;
+    width: 80px;
     height: 24px;
     border-radius: 12px;
     background-color: ${colors.grey20};
@@ -42,6 +42,7 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    gap: 4px;
 
     padding-left: 8px;
     padding-right: 8px;

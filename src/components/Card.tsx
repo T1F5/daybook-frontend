@@ -8,17 +8,20 @@ import CardFooter from './CardFooter';
 import { FC } from 'react';
 import Detail from './Detail';
 import DetailFooter from './DetailCardFooter';
+import Textarea from './Textarea';
 
 interface CardType {
     isHome?: boolean;
     isDetail?: boolean;
+    isCurrent?: boolean;
 }
 
-const Card: FC<CardType> = ({ isHome = false, isDetail = false }) => {
+const Card: FC<CardType> = ({ isHome = false, isDetail = false, isCurrent = true }) => {
     return (
         <Wrapper css={css`
             height: ${isDetail ? '560px' : '426px'};
             margin-top: ${isDetail ? "30px" : "0"};
+            opacity: ${!isCurrent ? 0.5 : 1};
         `}>
             <CardHeader>
                 <span>배려</span>
@@ -84,11 +87,11 @@ const CardHeader = styled.div`
     }
 `
 
-const CardMain = styled.textarea`
+const CardMain = styled(Textarea)`
     background: none;
     border: none;
     width: 100%;
-    min-height: 210px;
     flex-grow: 1;
+    min-height: 210px;
     height: max-content;
 `
