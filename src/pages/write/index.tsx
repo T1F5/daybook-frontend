@@ -1,5 +1,5 @@
 import Header from '@components/Header';
-import Button from '@components/common/Button';
+import Button from '@components/Button';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import useStep, { STEP, StepContent, StepContentMap } from '@hooks/useStep';

@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef } from 'react';
 import styled from '@emotion/styled';
-import { colors } from '../../theme';
+import { colors } from '../theme';
 import { media } from '@theme/media';
 
 export type ButtonType = 'default';
