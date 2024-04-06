@@ -18,4 +18,23 @@ export type GetDaybookResponse = {
   hashtags: string[];
   paperType: string;
   createdAt: string;
+  reactions: ReactionObject[];
+};
+
+export const REACTION_TYPE = {
+  MOVING: "MOVING",
+  GREAT: "GREAT",
+  ADMIRE: "ADMIRE",
+} as const;
+
+export type ReactionsResponse = {
+  reactionId: number;
+  reactionType: typeof REACTION_TYPE;
+  memberId: number;
+  boardId: number;
+};
+
+export type ReactionObject = {
+  count: number;
+  reactionType: typeof REACTION_TYPE;
 };
