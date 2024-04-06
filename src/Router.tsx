@@ -5,11 +5,15 @@ import Auth from "@pages/Auth";
 import Home from "@pages/Home";
 import OthersWriting from "@components/OthersDayBook";
 import MyWritings from "@pages/MyDayBook";
+import useAuth from "@hooks/useAuth";
 
 const Router = () => {
 
+  const { AuthRequired } = useAuth();
+
   return (
     <BrowserRouter>
+      <AuthRequired />
       <Routes>
         <Route path="/my" element={<MyWritings />} />
         <Route path="/image-download" element={<ImageDownloadPage />} />
