@@ -25,7 +25,7 @@ const HomeSwiper = () => {
     })();
   }, []);
 
-  if (!data) return <LoadingSpinner />;
+  if (data.length < 1) return <LoadingSpinner />;
 
   return (
     <>
