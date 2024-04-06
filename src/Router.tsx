@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import ImageDownloadPage from "./pages/ImageDownloadPage";
 import A from "./pages/A";
+import Write from "./pages/Write";
 
 const Router = () => {
   return (
@@ -9,6 +10,7 @@ const Router = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/image-download" element={<ImageDownloadPage />} />
+        <Route path="/write" element={<Write />} />
         <Route path="/a" element={<A />} />
       </Routes>
     </BrowserRouter>
