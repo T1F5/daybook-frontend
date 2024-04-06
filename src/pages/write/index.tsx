@@ -15,6 +15,7 @@ import { useEffect } from 'react';
 import { RESET } from 'jotai/utils';
 import { fadeLeftAnimation } from '@theme/animation';
 import { useSearchParams } from 'react-router-dom';
+import { paperTypeState } from '@state/paperType';
 
 const STEP_COMPONENTS = {
   [STEP.선택]: 선택,
@@ -34,10 +35,12 @@ function Write() {
     step
   ) as StepContent;
 
+  const paperTypeAtom = useAtomValue(paperTypeState);
   const [daybook, setDaybook] = useAtom(daybookAtom);
   const hasTagInput = useAtomValue(tagInputAtom);
 
   const buttonDisableHandler = () => {
+    if (!paperTypeAtom) return true;
     if (step === '쓰기' && daybook.content.trim().length === 0) return true;
     if (step === '탄생' && daybook.category.length === 0) return true;
     if (step === '형태' && daybook.hashtags.length === 0) return true;
