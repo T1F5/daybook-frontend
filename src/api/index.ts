@@ -43,7 +43,7 @@ export const deleteDaybookById = async (id: number) => {
 };
 
 export const postReactions = async (
-  reactionType: typeof REACTION_TYPE,
+  reactionType: keyof typeof REACTION_TYPE,
   boardId: number
 ) => {
   const { data } = await client.post<Response<ReactionsResponse>>(
