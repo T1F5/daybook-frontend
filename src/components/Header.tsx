@@ -1,8 +1,11 @@
 import styled from "@emotion/styled";
 import ChevronLeftSVG from "@assets/svg/chevron_left.svg?react";
 import HomeSVG from "@assets/svg/home.svg?react";
+import IconAddSVG from "@assets/svg/ico_add.svg?react";
 import getFontStyle from "@theme/font/getFontSize";
 import { ComponentProps, PropsWithChildren, useCallback } from "react";
+import { colors } from "@theme";
+import { Link } from "react-router-dom";
 
 interface Props {
   title?: string;
@@ -20,13 +23,22 @@ function Header({ title, children }: PropsWithChildren<Props>) {
 function Button({
   variety,
   ...attributes
-}: ComponentProps<"button"> & { variety: "back" | "home" }) {
+}: ComponentProps<"button"> & { variety: "back" | "home" | "write" }) {
   const renderSVG = useCallback(() => {
     if (variety === "back") return <ChevronLeftSVG />;
     if (variety === "home") return <HomeSVG />;
   }, [variety]);
 
+  if (variety === "write") return <WriteCTA />;
+
   return <TouchableButton {...attributes}>{renderSVG()}</TouchableButton>;
+}
+
+function WriteCTA() {
+  return <WriteCTAButton to='/write'>
+    <IconAddSVG />
+    <span>일지작성</span>
+  </WriteCTAButton>
 }
 
 export default Object.assign(Header, { Button });
@@ -59,3 +71,22 @@ const TouchableButton = styled.button`
   height: 48px;
   left: 8px;
 `;
+
+const WriteCTAButton = styled(Link)`
+  width: 106px;
+  height: 40px;
+  background: ${colors.primaryDark};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  border: none;
+  position: absolute;
+  top: 8px;
+  right: 20px;
+   
+  span {
+    color: white;
+    ${getFontStyle('title4')}
+  }
+`
