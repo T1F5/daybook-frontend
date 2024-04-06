@@ -1,4 +1,8 @@
+import { postDaybook } from '@api';
+import { daybookAtom } from '@state/daybook';
+import { useAtomValue } from 'jotai';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const STEP = {
   선택: '선택',
@@ -72,14 +76,28 @@ export const StepContentMap = new Map<StepType, StepContent>([
 ]);
 
 const useStep = () => {
-  const [step, setStep] = useState<StepType>(STEP.선택);
+  const navigate = useNavigate();
 
-  const nextStep = () => {
+  const [step, setStep] = useState<StepType>(STEP.선택);
+  const daybook = useAtomValue(daybookAtom);
+
+  const nextStep = async () => {
     const nextStep = StepContentMap.get(step)?.nextStep;
 
     // 다음 스텝이 없으면, 완료 스탭
     if (!nextStep) {
+      navigate('/', { replace: true });
       return;
+    }
+
+    // 일지 API 전송
+    if (nextStep === STEP.완료) {
+      try {
+        await postDaybook(daybook);
+      } catch {
+        alert('일시적인 오류가 발생했습니다. 😳');
+        navigate('/', { replace: true });
+      }
     }
 
     setStep(nextStep);
@@ -88,8 +106,9 @@ const useStep = () => {
   const previousStep = () => {
     const previousStep = StepContentMap.get(step)?.previousStep;
 
-    // 다음 스텝이 없으면, 종이 선택 스탭
+    // 이전 스텝이 없으면, 종이 선택 스탭
     if (!previousStep) {
+      navigate('/', { replace: true });
       return;
     }
 

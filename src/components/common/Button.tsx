@@ -1,44 +1,52 @@
-import { ComponentPropsWithoutRef } from "react";
-import styled from "@emotion/styled";
-import { colors } from "../../theme";
+import { ComponentPropsWithoutRef } from 'react';
+import styled from '@emotion/styled';
+import { colors } from '../../theme';
+import { media } from '@theme/media';
 
-export type ButtonType = "default"
+export type ButtonType = 'default';
 
-interface ButtonProps extends ComponentPropsWithoutRef<"button"> {
-    children: React.ReactNode | string;
-    buttonType?: ButtonType;
-    disabled?: boolean;
+interface ButtonProps extends ComponentPropsWithoutRef<'button'> {
+  children: React.ReactNode | string;
+  buttonType?: ButtonType;
+  disabled?: boolean;
 }
 
-const Button = ({
-    children,
-    buttonType = "default",
-    ...rest
-}: ButtonProps) => {
-    const StyledButton = ButtonObj[buttonType as keyof typeof ButtonObj];
-    const Render = (
-        <StyledButton onClick={rest.onClick} {...rest}>
-            {children}
-        </StyledButton>
-    );
+const Button = ({ children, buttonType = 'default', ...rest }: ButtonProps) => {
+  const StyledButton = ButtonObj[buttonType as keyof typeof ButtonObj];
+  const Render = (
+    <StyledButton onClick={rest.onClick} {...rest}>
+      {children}
+    </StyledButton>
+  );
 
-    return Render;
+  return Render;
 };
 
 export default Button;
 
 const DefaultButton = styled.button`
-    width: 100%;
-    background: ${colors.primaryDark};
-    height: 56px;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    border: none;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 56px;
+  background: ${colors.primaryDark};
+  color: ${colors.white};
+  cursor: pointer;
+  border: none;
+
+  &:disabled {
+    background-color: ${colors.grey30};
+  }
+
+  ${media.tablet} {
+    max-width: 768px;
+    left: calc(50% - 384px);
+  }
 `;
 
 const ButtonObj = {
-    default: DefaultButton,
+  default: DefaultButton,
 };

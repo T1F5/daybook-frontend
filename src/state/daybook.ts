@@ -1,15 +1,15 @@
 import { atom } from 'jotai';
 import { atomWithReset } from 'jotai/utils';
 
-type DayBook = {
-  respectBoardId: number; // 참조한 게시물
+export type DayBook = {
+  respectBoardId: number | null; // 참조한 게시물
   content: string;
   category: string;
   hashtags: string[];
 };
 
 export const daybookAtom = atomWithReset<DayBook>({
-  respectBoardId: 0,
+  respectBoardId: null,
   content: '',
   category: '',
   hashtags: [],
