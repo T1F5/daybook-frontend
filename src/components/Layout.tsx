@@ -1,7 +1,29 @@
+import client from "@api";
 import { css } from "@emotion/react";
-import { PropsWithChildren } from "react";
+import { PropsWithChildren, useEffect } from "react";
 
 function Layout({ children }: PropsWithChildren) {
+
+  useEffect(() => {
+    const id = client.interceptors.request.use((config) => {
+      if (!config.headers) return config;
+
+      let token: string | null = null;
+
+      token = localStorage.getItem('accessToken');
+
+      if (token !== null) {
+        config.headers.Authorization = `Bearer ${token}`;
+      }
+
+      return config;
+    });
+
+    return () => {
+      client.interceptors.request.eject(id);
+    }
+  })
+
   return (
     <div
       css={css`
