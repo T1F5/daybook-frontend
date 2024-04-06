@@ -9,12 +9,6 @@ function GlobalStyles() {
 
     ${emotionNormalize};
 
-    img {
-      user-select: none;
-      // https://caniuse.com/webkit-user-drag
-      -webkit-user-drag: none;
-    }
-
     html,
     body {
       font-family: 'Nanum Myeongjo', serif;
@@ -22,12 +16,17 @@ function GlobalStyles() {
 
       background-image: url("/src/assets/images/background.png");
       background-size: cover;
-
       overflow: hidden;
     }
 
     p {
       margin: 0;
+    }
+
+    img {
+      user-select: none;
+      // https://caniuse.com/webkit-user-drag
+      -webkit-user-drag: none;
     }
 
     [type='radio'] {

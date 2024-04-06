@@ -9,7 +9,7 @@ import 완료 from '@pages/write/완료';
 import 탄생 from '@pages/write/탄생';
 import 형태 from '@pages/write/형태';
 import 선택 from '@pages/write/선택';
-import { useAtomValue, useSetAtom } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
 import { daybookAtom, tagInputAtom } from '@state/daybook';
 import { useEffect } from 'react';
 import { RESET } from 'jotai/utils';
@@ -31,12 +31,19 @@ function Write() {
     step
   ) as StepContent;
 
-  const setDayBook = useSetAtom(daybookAtom);
+  const [daybook, setDaybook] = useAtom(daybookAtom);
   const hasTagInput = useAtomValue(tagInputAtom);
 
+  const buttonDisableHandler = () => {
+    if (step === '쓰기' && daybook.content.trim().length === 0) return true;
+    if (step === '탄생' && daybook.category.length === 0) return true;
+    if (step === '형태' && daybook.hashtags.length === 0) return true;
+    return false;
+  };
+
   useEffect(() => {
-    setDayBook(RESET);
-  }, [setDayBook]);
+    setDaybook(RESET);
+  }, [setDaybook]);
 
   return (
     <>
@@ -69,7 +76,9 @@ function Write() {
       </Wrapper>
       {!hasTagInput && (
         <FloatingButtonWrapper>
-          <Button onClick={nextStep}>{buttonText}</Button>
+          <Button onClick={nextStep} disabled={buttonDisableHandler()}>
+            {buttonText}
+          </Button>
         </FloatingButtonWrapper>
       )}
     </>
