@@ -1,8 +1,8 @@
+import Button from "../components/common/Button";
+
 const Home = () => {
     return (
-        <div>
-            Hello Daybook!            
-        </div>
+        <Button>선택완료</Button>
     );
 };
 
